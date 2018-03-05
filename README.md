@@ -11,7 +11,7 @@ CatCat ChatBot hot wallets
 - [ ] It should return wallet public key after generated.
 - [ ] It should describe how to activate the wallet.
 - [ ] It should describe how to get wallet information.
-```json
+```
 {
   messenger: {
     psid: 1234,
