@@ -1,5 +1,5 @@
 {
-  "name": "@cacatio/chatbot-wallet",
+  "name": "@cacatio/wallet",
   "version": "0.1.0",
   "description": "CatCat chatbot wallet for Crypto Currency",
   "main": "src/index.js",
@@ -24,7 +24,8 @@
     "down": "docker-compose kill || true && docker-compose down || true",
     "up": "docker-compose build && docker-compose up || true",
     "attach": "docker attach wallet || true",
-    "logs": "docker logs wallet || true"
+    "logs": "docker logs wallet || true",
+    "deploy": ". ./scripts/remote.sh ./scripts/deploy.sh"
   },
   "dependencies": {
     "babel": "^6.23.0",

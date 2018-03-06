@@ -1,4 +1,4 @@
-# chatbot-wallet
+# wallet
 CatCat ChatBot hot wallets
 
 ## Alpha version

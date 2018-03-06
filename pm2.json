@@ -1,5 +1,5 @@
 {
-  "name": "catcat-chatbot-wallet",
+  "name": "catcat-wallet",
   "script": "src/index.js",
   "instances": "2",
   "env": {
