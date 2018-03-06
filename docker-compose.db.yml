@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  wallet:
+    container_name: wallet
+    env_file: .env
+    environment:
+      - PORT=${PORT:-8080}
+    image: catcatio/wallet
+    working_dir: /usr/app
+    ports:
+      - "${PORT:-8080}:${PORT:-8080}"
+    volumes:
+      - ./.env:/usr/app/.env
+      - ./node_modules:/usr/app/node_modules
+      - ./src:/usr/app/src
+    # command: pm2-runtime start pm2.json --watch
+    command: npm run mon
+    links:
+      - cc_mongo
+    networks:
+      - front
+      - back
+
+  cc_mongo_data:  
+    image: mongo:3.6
+    container_name: cc_mongo_data
+    command: bin/true
+    networks:
+      - back
+
+  cc_mongo:  
+    image: mongo:3.6
+    container_name: cc_mongo
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - cc_mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    restart: on-failure
+    command: --bind_ip_all
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - back
+
+networks:
+  front:
+  back:
+
+volumes:
+  cc_mongo_data:

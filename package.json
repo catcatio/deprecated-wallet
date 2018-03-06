@@ -7,22 +7,42 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@types/jest": "^22.0.1",
-    "@types/node": "^9.3.0",
-    "jest": "^22.0.6",
-    "typescript": "^2.6.2"
+    "@types/jest": "^22.2.0",
+    "@types/node": "^9.4.6",
+    "jest": "^22.4.2",
+    "nodemon": "^1.17.1",
+    "typescript": "^2.7.2"
   },
   "scripts": {
     "build": "tsc --inlineSources false --sourceMap false --inlineSourceMap false",
     "dev": "tsc -w",
     "test": "jest --watchAll",
-    "start": "node src/index.js",
-    "d-build": "NODE_ENV=development docker build --no-cache -t catcatio/wallet . || true",
-    "in": "docker exec -it $(docker ps -a -q --filter ancestor=catcatio/wallet) /bin/sh || true",
+    "start": "./node_modules/.bin/babel-node ./src/index.js",
+    "mon": "./node_modules/.bin/nodemon ./src/index.js --exec ./node_modules/.bin/babel-node",
+    "dbuild": "NODE_ENV=development docker build --no-cache -t catcatio/wallet . || true",
+    "in": "docker exec -it wallet /bin/sh || true",
     "down": "docker-compose kill || true && docker-compose down || true",
-    "up": "docker-compose build && docker-compose up -d && docker ps || true"
+    "up": "docker-compose build && docker-compose up || true",
+    "attach": "docker attach wallet || true",
+    "logs": "docker logs wallet || true"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "lodash": "^4.17.5",
+    "morgan": "^1.9.0",
+    "recess": "^1.1.9",
+    "request": "^2.83.0",
+    "serve-favicon": "^2.4.5",
+    "uuid": "^3.2.1"
   }
 }
