@@ -1,0 +1,28 @@
+{
+  "name": "@cacatio/chatbot-wallet",
+  "version": "0.1.0",
+  "description": "CatCat chatbot wallet for Crypto Currency",
+  "main": "src/index.js",
+  "author": "katopz <katopz@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "@types/node": "^9.3.0",
+    "jest": "^22.0.6",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "build": "tsc --inlineSources false --sourceMap false --inlineSourceMap false",
+    "dev": "tsc -w",
+    "test": "jest --watchAll",
+    "start": "node src/index.js",
+    "d-build": "NODE_ENV=development docker build --no-cache -t catcatio/wallet . || true",
+    "in": "docker exec -it $(docker ps -a -q --filter ancestor=catcatio/wallet) /bin/sh || true",
+    "down": "docker-compose kill || true && docker-compose down || true",
+    "up": "docker-compose build && docker-compose up -d && docker ps || true"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
