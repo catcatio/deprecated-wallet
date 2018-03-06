@@ -3,6 +3,8 @@ if [ ! -d wallet ]; then
   cd wallet
 else
   cd wallet
+  git reset --hard HEAD
+  git clean -f -d
   git pull
 fi
 
