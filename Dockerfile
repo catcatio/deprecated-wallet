@@ -15,6 +15,6 @@ WORKDIR /usr/app
 COPY . .
 
 # For development
-VOLUME ["/usr/app/src"]
+VOLUME ["/usr/app/src", "/usr/app/.env"]
 
 # CMD [ "pm2-runtime", "start", "pm2.json", "--watch" ]

@@ -11,9 +11,9 @@ services:
     ports:
       - "${PORT:-8080}:${PORT:-8080}"
     volumes:
-      #- ./.env:/usr/app/.env
-      #- ./node_modules:/usr/app/node_modules
+      - ./.env:/usr/app/.env
       - ./src:/usr/app/src
+      #- ./node_modules:/usr/app/node_modules
     # command: pm2-runtime start pm2.json --watch
     command: npm run mon
  

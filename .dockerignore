@@ -3,3 +3,4 @@ README.md
 LICENSE
 .server
 node_modules
+.env
