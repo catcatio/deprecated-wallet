@@ -39,7 +39,7 @@ app.set('view engine', 'jade')
 /* ----------  Static Assets  ---------- */
 
 app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
-app.use(express.static(path.join(__dirname, 'public')))
+app.use('/wallet', express.static(path.join(__dirname, 'public')))
 
 /* ----------  Parsers  ---------- */
 

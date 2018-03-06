@@ -22,21 +22,21 @@ block content
               input(class='required',id='username',type='text',value=username,placeholder='Choose a username',name='username')
             div(class='inputStatus')
               if errorInput === 'username'
-                img(class='statusIcon warning' src='/images/warning.svg')
+                img(class='statusIcon warning' src='/wallet/images/warning.svg')
           fieldset(id='passwordField')
             div(class='input')
               label(for='password') Password
               input(class='required',id='password',type='password',value=password,placeholder='Choose a password',name='password')
             div(class='inputStatus')
               if errorInput === 'password'
-                img(class='statusIcon warning' src='/images/warning.svg')
+                img(class='statusIcon warning' src='/wallet/images/warning.svg')
           fieldset(id='password2Field')
             div(class='input')
               label(for='passwordVerification') Confirm
               input(class='required', id='passwordVerification',type='password',value=password2,placeholder='Confirm your password',name='password2')
             div(class='inputStatus')
               if errorInput === 'password2'
-                img(class='statusIcon warning' src='/images/warning.svg')
+                img(class='statusIcon warning' src='/wallet/images/warning.svg')
           input(type='hidden' name='accountLinkingToken' value='#{accountLinkingToken}')
           input(type='hidden' name='redirectURI' value='#{redirectURI}')
         div(id='error')
@@ -44,6 +44,6 @@ block content
             p #{errorMessage}
         button(class='submitButton' id='submit',type='submit')
           div(class='row' id='submitInternal')
-            img(class='icon' id='spinner' src='/images/loading.svg' style='display:none')
+            img(class='icon' id='spinner' src='/wallet/images/loading.svg' style='display:none')
             span(class='buttonText') Create Account
       p(class='subtitle') Already have an account? #[a(href=`/users/login?account_linking_token=${accountLinkingToken}&redirect_uri=${redirectURI}`) Log In]
