@@ -25,7 +25,10 @@
     "up": "docker-compose build && docker-compose up || true",
     "attach": "docker attach wallet || true",
     "logs": "docker logs wallet || true",
-    "deploy": ". ./scripts/remote.sh ./scripts/deploy.sh"
+    "deploy": ". ./scripts/remote.sh ./scripts/deploy.sh || true",
+    "update": ". ./scripts/remote.sh ./scripts/update.sh || true",
+    "rdev": ". ./scripts/dev.sh || true",
+    "remote": "ssh root@188.166.241.151 || true"
   },
   "dependencies": {
     "babel": "^6.23.0",
