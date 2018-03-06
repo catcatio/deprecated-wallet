@@ -28,6 +28,8 @@
     "deploy": ". ./scripts/remote.sh ./scripts/deploy.sh || true",
     "update": ". ./scripts/remote.sh ./scripts/update.sh || true",
     "rdev": ". ./scripts/dev.sh || true",
+    "nginx": "scp ./.server/etc/nginx/conf.d/https.conf root@188.166.241.151:/etc/nginx/conf.d/default.conf && npm run renginx",
+    "renginx": ". ./scripts/remote.sh ./scripts/renginx.sh || true",
     "remote": "ssh root@188.166.241.151 || true"
   },
   "dependencies": {

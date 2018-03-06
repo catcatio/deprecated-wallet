@@ -57,9 +57,9 @@ app.use(logger('dev'))
 
 /* ----------  Primary / Happy Path  ---------- */
 
-app.use('/fbm', index)
-app.use('/fbm/webhook', webhooks)
-app.use('/fbm/users', users)
+app.use('/wallet', index)
+app.use('/wallet/webhook', webhooks)
+app.use('/wallet/users', users)
 
 /* ----------  Errors  ---------- */
 

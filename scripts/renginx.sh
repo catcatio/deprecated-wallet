@@ -1,0 +1,1 @@
+service nginx start && nginx -t && nginx -s reload
