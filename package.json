@@ -29,7 +29,8 @@
     "rbuild": ". ./scripts/dev.sh || true",
     "nginx": "scp ./.server/etc/nginx/conf.d/https.conf root@188.166.241.151:/etc/nginx/conf.d/default.conf && npm run renginx",
     "renginx": ". ./scripts/remote.sh ./scripts/renginx.sh || true",
-    "remote": "ssh root@188.166.241.151 || true"
+    "remote": "ssh root@188.166.241.151 || true",
+    "sync": ". ./scripts/sync.sh || true"
   },
   "dependencies": {
     "babel": "^6.23.0",
