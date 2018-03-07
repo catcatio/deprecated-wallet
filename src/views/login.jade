@@ -14,7 +14,7 @@ block content
         h2 Log In
       div(class='subtitle')
         p The demo username is “dave” and password is “12345678”.
-      form(action='/wallet/users/login', method='post', class='column')
+      form(action='/users/login', method='post', class='column')
         div(class='formFields')
           fieldset(id='usernameField')
             div(class='input')
@@ -22,14 +22,14 @@ block content
               input(class='required',id='username',type='text',value=username,placeholder='Enter your username',name='username')
             div(class='inputStatus')
               if errorInput === 'username'
-                img(class='statusIcon warning' src='/wallet/images/warning.svg')
+                img(class='statusIcon warning' src='/images/warning.svg')
           fieldset(id='passwordField')
             div(class='input')
               label(for='password') Password
               input(class='required',id='password',type='password',value=password,placeholder='Enter password',name='password')
             div(class='inputStatus')
               if errorInput === 'password'
-                img(class='statusIcon warning' src='/wallet/images/warning.svg')
+                img(class='statusIcon warning' src='/images/warning.svg')
           input(type='hidden' name='accountLinkingToken' value='#{accountLinkingToken}')
           input(type='hidden' name='redirectURI' value='#{redirectURI}')
         div(id='error')
@@ -37,6 +37,6 @@ block content
             p #{errorMessage}
         button(class='submitButton' id='submit',type='submit')
           div(class='row' id='submitInternal')
-            img(class='icon' id='spinner' src='/wallet/images/loading.svg' style='display:none')
+            img(class='icon' id='spinner' src='/images/loading.svg' style='display:none')
             span(class='buttonText') Log In
       p(class='subtitle') Don’t have an account? #[a(href=`/users/create?account_linking_token=${accountLinkingToken}&redirect_uri=${redirectURI}`) Create an Account]

@@ -39,7 +39,7 @@ app.set('view engine', 'jade')
 /* ----------  Static Assets  ---------- */
 
 app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
-app.use('/wallet', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 /* ----------  Parsers  ---------- */
 
@@ -57,9 +57,9 @@ app.use(logger('dev'))
 
 /* ----------  Primary / Happy Path  ---------- */
 
-app.use('/wallet', index)
-app.use('/wallet/webhook', webhooks)
-app.use('/wallet/users', users)
+app.use('/', index)
+app.use('/webhook', webhooks)
+app.use('/users', users)
 
 /* ----------  Errors  ---------- */
 

@@ -19,7 +19,7 @@ const showPasswordError = () => {
     errorSection.innerHTML = '<p id="passwordError">Oops. Passwords don’t match.</p>'
   }
   if (inputStatus) {
-    inputStatus.innerHTML = '<img src="/wallet/images/warning.svg" class="statusIcon warning">'
+    inputStatus.innerHTML = '<img src="/images/warning.svg" class="statusIcon warning">'
   }
 }
 
@@ -71,7 +71,7 @@ const applyCheckToField = field => {
   const inputStatus = document.querySelector(`#${field.name}Field > div.inputStatus`)
   const checkExists = document.querySelector(`#${field.name}Field > div.inputStatus > img.check`)
   if (inputStatus && !checkExists) {
-    inputStatus.innerHTML = '<img src="/wallet/images/check.svg" class="statusIcon check">'
+    inputStatus.innerHTML = '<img src="/images/check.svg" class="statusIcon check">'
   }
 }
 
