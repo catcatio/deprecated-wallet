@@ -4,8 +4,8 @@ CatCat ChatBot hot wallets
 ## Alpha version
 ### v0.1.0 : Init wallet
 > Secure level 1 : all trusted server
-- [ ] Server on Firebase.
-- [ ] It should say greeting.
+- [x] Server on DigitalOcean.
+- [x] It should say greeting.
 - [ ] It should ask user to `create` wallet `Stellar`.
 - [ ] It should `create` blank `XLM` wallet and encrypted with master key.
 - [ ] It should return wallet public key after generated.
