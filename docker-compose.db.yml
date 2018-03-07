@@ -17,26 +17,26 @@ services:
     # command: pm2-runtime start pm2.json --watch
     command: npm run mon
     links:
-      - cc_mongo
+      - mongo
     networks:
       - front
       - back
 
-  cc_mongo_data:  
+  mongo_data:  
     image: mongo:3.6
-    container_name: cc_mongo_data
+    container_name: mongo_data
     command: bin/true
     networks:
       - back
 
-  cc_mongo:  
+  mongo:  
     image: mongo:3.6
-    container_name: cc_mongo
+    container_name: mongo
     env_file: .env
     environment:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
-      - cc_mongo_data:/data/db
+      - mongo_data:/data/db
     ports:
       - "27017:27017"
     restart: on-failure
@@ -52,4 +52,4 @@ networks:
   back:
 
 volumes:
-  cc_mongo_data:
+  mongo_data:
