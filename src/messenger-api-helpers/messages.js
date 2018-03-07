@@ -32,7 +32,7 @@ const createAccountMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Ready to do this? You’ll need to log in to your Jasper’s account so I can access your past orders.',
+      text: "Let's link Stellar wallet to your account",
       buttons: [signInButton]
     }
   }

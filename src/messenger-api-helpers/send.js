@@ -57,7 +57,7 @@ const sendMessage = (recipientId, messagePayloads) => {
 const sendLoggedOutWelcomeMessage = recipientId => {
   sendMessage(recipientId, [
     {
-      text: 'Hi! 👋 Welcome to Jasper’s Market!' + ' (Messenger Platform Account Linking demo)'
+      text: 'Hi! 👋 Welcome to CatCat wallet'
     },
     messages.createAccountMessage
   ])

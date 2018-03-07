@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3"
 
 services:
   wallet:
@@ -12,7 +12,6 @@ services:
       - "${PORT:-8080}:${PORT:-8080}"
     volumes:
       - ./.env:/usr/app/.env
-      - ./node_modules:/usr/app/node_modules
       - ./src:/usr/app/src
     # command: pm2-runtime start pm2.json --watch
     command: npm run mon

@@ -49,6 +49,7 @@
     "recess": "^1.1.9",
     "request": "^2.83.0",
     "serve-favicon": "^2.4.5",
+    "stellar-base": "^0.7.7",
     "uuid": "^3.2.1"
   }
 }

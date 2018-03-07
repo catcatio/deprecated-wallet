@@ -16,12 +16,19 @@ block content
         p To access your order history and shopping list, you’ll need to create an account.
       form(action='/users/create', method='post', class='column')
         div(class='formFields')
-          fieldset(id='usernameField')
+          fieldset(id='publicKeyField')
             div(class='input')
-              label(for='username') Username
-              input(class='required',id='username',type='text',value=username,placeholder='Choose a username',name='username')
+              label(for='publicKey') Public Key
+              input(class='required',id='publicKey',type='text',value='#{publicKey}',placeholder='Your public key',name='publicKey')
             div(class='inputStatus')
-              if errorInput === 'username'
+              if errorInput === 'publicKey'
+                img(class='statusIcon warning' src='/images/warning.svg')
+          fieldset(id='secretField')
+            div(class='input')
+              label(for='secret') Public Key
+              input(class='required',id='secret',type='text',value='#{secret}',placeholder='Your public key',name='secret')
+            div(class='inputStatus')
+              if errorInput === 'secret'
                 img(class='statusIcon warning' src='/images/warning.svg')
           fieldset(id='passwordField')
             div(class='input')

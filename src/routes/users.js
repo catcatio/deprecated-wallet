@@ -8,6 +8,7 @@
 // ===== MODULES ===============================================================
 import express from 'express'
 import uuid from 'uuid'
+import { Keypair } from 'stellar-base'
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user_store'
@@ -44,7 +45,14 @@ router.get('/create', function (req, res) {
   const accountLinkingToken = req.query.account_linking_token
   const redirectURI = req.query.redirect_uri
 
-  res.render('create-account', { accountLinkingToken, redirectURI })
+  const newAccount = Keypair.random()
+
+  res.render('create-account', {
+    accountLinkingToken,
+    redirectURI,
+    publicKey: newAccount.publicKey(),
+    secret: newAccount.secret()
+  })
 })
 
 /**
