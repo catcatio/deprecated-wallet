@@ -69,11 +69,7 @@ pyenv local 2.7.14
 ### v0.4.0
 - [ ] TBD
 
-## TODO
-- [ ] HA MongoDB : https://github.com/smartsdk/mongo-rs-controller-swarm
-- [ ] Move to Google Cloud if get funding.
-
-## Security Check list
+## Security check list
 - [x] 2 Factor DNS, Server
 - [x] SSH only, Strict permissions, UFW
 - [ ] A Grade SSL, Header
@@ -81,5 +77,10 @@ pyenv local 2.7.14
 - [ ] CORS, Helmet
 - [ ] Encrypted server with master key
 - [ ] Encrypted local with user pin
-- [ ] Authen MongoDB
+- [x] Authen MongoDB
 - [ ] Integrity check with other DB
+- [ ] Use oauth for multi-factor authen
+
+## Scalability check list
+- [ ] HA MongoDB : https://github.com/smartsdk/mongo-rs-controller-swarm
+- [ ] Move to Google Cloud if get funding.
