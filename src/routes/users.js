@@ -8,7 +8,7 @@
 // ===== MODULES ===============================================================
 import express from 'express'
 import uuid from 'uuid'
-import { Keypair } from 'stellar-base'
+import { Keypair } from 'stellar-sdk'
 
 // ===== STORES ================================================================
 import UserStore from '../stores/user_store'

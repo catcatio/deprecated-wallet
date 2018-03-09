@@ -13,11 +13,18 @@
     "nodemon": "^1.17.1",
     "typescript": "^2.7.2"
   },
+  "standard": {
+    "globals": [
+      "it",
+      "describe",
+      "expect"
+    ]
+  },
   "scripts": {
-    "build": "tsc --inlineSources false --sourceMap false --inlineSourceMap false",
-    "dev": "tsc -w",
-    "test": "jest --watchAll",
-    "start": "./node_modules/.bin/babel-node ./src/index.js",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "react-scripts test --env=jsdom",
     "mon": "./node_modules/.bin/nodemon ./src/index.js --exec ./node_modules/.bin/babel-node",
     "dbuild": "NODE_ENV=development docker build --no-cache -t catcatio/wallet . || true",
     "in": "docker exec -it wallet /bin/sh || true",
@@ -33,23 +40,25 @@
     "sync": ". ./scripts/sync.sh || true"
   },
   "dependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "aes-js": "^3.1.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
-    "jade": "^1.11.0",
-    "lodash": "^4.17.5",
+    "localforage": "^1.5.7",
+    "material-ui": "^1.0.0-beta.36",
+    "material-ui-icons": "^1.0.0-beta.36",
     "morgan": "^1.9.0",
-    "recess": "^1.1.9",
+    "next": "latest",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "^1.1.1",
+    "react-tap-event-plugin": "^3.0.2",
     "request": "^2.83.0",
     "serve-favicon": "^2.4.5",
-    "stellar-base": "^0.7.7",
+    "stellar-sdk": "^0.8.0",
+    "typeface-roboto": "0.0.54",
     "uuid": "^3.2.1"
   }
 }
