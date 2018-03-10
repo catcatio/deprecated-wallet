@@ -9,9 +9,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.0",
     "@types/node": "^9.4.7",
-    "jest": "^22.4.2",
-    "nodemon": "^1.17.1",
-    "typescript": "^2.7.2"
+    "jest": "^22.4.2"
   },
   "standard": {
     "globals": [
@@ -52,6 +50,7 @@
     "material-ui-icons": "^1.0.0-beta.36",
     "morgan": "^1.9.0",
     "next": "latest",
+    "nodemon": "^1.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.1",

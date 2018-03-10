@@ -8,6 +8,8 @@ scp docker-compose.yml root@188.166.241.151:~/wallet/docker-compose.yml
 # ssh root@188.166.241.151 "cat ~/wallet/docker-compose.yml"
 
 ssh root@188.166.241.151 "export NODE_ENV=development && \
+cd ~/wallet/scripts/tsc && \
+docker image build -t tsc . && \
 cd ~/wallet/ && \
 docker build --no-cache -t catcatio/wallet . && \
 docker-compose build && \

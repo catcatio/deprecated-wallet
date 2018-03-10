@@ -1,1 +1,0 @@
-NODE_ENV=production docker image build -t tsc ./tsc
