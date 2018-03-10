@@ -46,7 +46,7 @@ const styles = theme => ({
     gridGap: `${theme.spacing.unit * 3}px`
   },
   divider: {
-    height: '64px'
+    height: '96px'
   },
   button: {
     width: '100%'
