@@ -5,7 +5,7 @@ exports.start = async () => {
   const app = await require('./express').start()
 
   // Messenger
-  // await require('./messenger').start(app)
+  await require('./messenger').start(app)
 
   // Next
   await require('./next').start(app)

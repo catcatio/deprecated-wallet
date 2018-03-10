@@ -1,12 +1,13 @@
 exports.start = async app => {
-  /* ----------  Web hooks  ---------- */
+  /* ----------  Web hooks  ---- ------ */
 
-  require('./routes/webhooks')
+  const { hook } = require('./routes/webhooks')
+  hook(app)
 
   /* ----------  Errors  ---------- */
 
-  app.use(function (err, req, res) {
-    if (!res.locals) return
+  app.use(function (err, req, res, next) {
+    if (!res.locals) return next()
 
     // set locals, only providing error in development
     res.locals.message = err.message

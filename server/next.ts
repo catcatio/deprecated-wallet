@@ -8,7 +8,6 @@ export const start = async app => {
   await _next.prepare()
 
   app.get('*', (req, res) => {
-    console.log('*')
     return handle(req, res)
   })
 
