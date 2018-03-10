@@ -8,7 +8,7 @@
 // ===== LODASH ================================================================
 
 const castArray = require('lodash/castArray')
-const isEmpty = require('lodash/isEmpty')
+const _isEmpty = require('lodash/isEmpty')
 
 // ===== MODULES ===============================================================
 const request = require('request')
@@ -58,7 +58,7 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
         console.log(`Successfully sent message to ${endPoint} endpoint: `, JSON.stringify(body))
 
         // Continue sending payloads until queue empty.
-        if (!isEmpty(queue)) {
+        if (!_isEmpty(queue)) {
           callAPI(endPoint, queue, queryParams)
         }
       } else {

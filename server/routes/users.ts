@@ -11,7 +11,7 @@ const uuid = require('uuid')
 const { Keypair } = require('stellar-sdk')
 
 // ===== STORES ================================================================
-const UserStore = require('../stores/user_store')
+const _UserStore = require('../stores/user_store')
 
 const router = express.Router()
 
@@ -30,7 +30,7 @@ const linkAccountToMessenger = (res, username, redirectURI) => {
   // set the messenger id of the user to the authCode.
   // this will be replaced on successful account link
   // with the users id.
-  UserStore.linkMessengerAccount(username, authCode)
+  _UserStore.linkMessengerAccount(username, authCode)
 
   // Redirect users to this URI on successful login
   const redirectURISuccess = `${redirectURI}&authorization_code=${authCode}`
@@ -60,7 +60,7 @@ router.get('/create', function (req, res) {
  */
 router.post('/create', function (req, res) {
   const { username, password, password2, redirectURI } = req.body
-  if (UserStore.has(username)) {
+  if (_UserStore.has(username)) {
     res.render('create-account', {
       username,
       password,
@@ -70,7 +70,7 @@ router.post('/create', function (req, res) {
       errorInput: 'username'
     })
   } else {
-    UserStore.insert(username, password)
+    _UserStore.insert(username, password)
 
     if (redirectURI) {
       linkAccountToMessenger(res, username, redirectURI)
@@ -106,7 +106,7 @@ router.get('/login', function (req, res) {
  */
 router.post('/login', function (req, res) {
   const { username, password, redirectURI } = req.body
-  const userLogin = UserStore.get(username)
+  const userLogin = _UserStore.get(username)
   if (!userLogin || userLogin.password !== password) {
     res.render('login', {
       redirectURI,

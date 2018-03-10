@@ -4,14 +4,14 @@
   "restartable": "rs",
   "ignore": [
     ".git",
-    "node_modules/**/node_modules",
-    ".next",
+    "node_modules/*",
+    ".next/*",
     "*.test.js",
     "*__",
-    "coverage",
+    "coverage/*",
     ".tmp/*",
     "*.log",
-    "node_modules"
+    "pages/*"
   ],
   "events": {
     "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"

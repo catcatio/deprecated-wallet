@@ -1,3 +1,8 @@
+# Build with TypeScript
+FROM tsc:latest as builder
+COPY . .
+RUN tsc
+
 FROM keymetrics/pm2:8-alpine
 
 # Environments
@@ -12,9 +17,10 @@ RUN npm config set registry https://registry.npmjs.org/ && \
   rm -rf /tmp
 WORKDIR /usr/app
 
-COPY . .
+# Source
+COPY --from=builder /usr/app .
 
 # For development
-VOLUME ["/usr/app/src", "/usr/app/.env"]
+VOLUME ["/usr/app/.env", "/usr/app/server", "/usr/app/pages", "/usr/app/lib"]
 
 # CMD [ "pm2-runtime", "start", "pm2.json", "--watch" ]

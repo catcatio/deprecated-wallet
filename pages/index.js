@@ -3,7 +3,6 @@ import Link from 'next/link'
 
 // Core
 import { createAccount } from '../lib/xlm'
-import { getAccount, getUserPageScopedUserId } from '../model'
 
 // Material-UI
 import Button from 'material-ui/Button'
