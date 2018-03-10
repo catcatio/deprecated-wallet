@@ -4,3 +4,4 @@ LICENSE
 .server
 node_modules
 .env
+.next
