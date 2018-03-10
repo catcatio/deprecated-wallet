@@ -69,6 +69,15 @@ pyenv local 2.7.14
 ### v0.4.0
 - [ ] TBD
 
+### v0.5.0
+- [ ] It should able to ICO without KYC
+
+### v0.6.0
+- [ ] It should able to ICO with KYC
+
+### v0.7.0
+- [ ] It should able to connect with `keybase.io` somehow
+
 ## Security check list
 - [x] 2 Factor DNS, Server
 - [x] SSH only, Strict permissions, UFW
