@@ -9,7 +9,8 @@
   "devDependencies": {
     "@types/jest": "^22.2.0",
     "@types/node": "^9.4.7",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "nodemon": "^1.17.1"
   },
   "standard": {
     "globals": [
@@ -24,7 +25,8 @@
     "start": "next start -p 8080",
     "test": "react-scripts test --env=jsdom",
     "mon": "./node_modules/.bin/nodemon index.js",
-    "dbuild": "NODE_ENV=development docker build --no-cache -t catcatio/wallet . || true",
+    "bbuild": "NODE_ENV=development docker build -t catcatio/builder . -f builder.Dockerfile || true",
+    "dbuild": "NODE_ENV=production docker build -t catcatio/wallet . || true",
     "in": "docker exec -it wallet /bin/sh || true",
     "down": "docker-compose kill || true && docker-compose down || true",
     "up": "docker-compose build && docker-compose up || true",
@@ -50,7 +52,6 @@
     "material-ui-icons": "^1.0.0-beta.36",
     "morgan": "^1.9.0",
     "next": "latest",
-    "nodemon": "^1.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.1",
