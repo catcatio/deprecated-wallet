@@ -25,7 +25,7 @@
     "start": "next start -p 8080",
     "test": "react-scripts test --env=jsdom",
     "mon": "./node_modules/.bin/nodemon index.js",
-    "bbuild": "NODE_ENV=development docker build -t catcatio/builder . -f builder.Dockerfile || true",
+    "bbuild": "NODE_ENV=development docker build -f builder.Dockerfile -t catcatio/builder . || true",
     "dbuild": "NODE_ENV=production docker build -t catcatio/wallet . || true",
     "in": "docker exec -it wallet /bin/sh || true",
     "down": "docker-compose kill || true && docker-compose down || true",

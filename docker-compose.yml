@@ -1,6 +1,13 @@
 version: "3"
 
 services:
+  builder:
+    container_name: builder
+    image: catcatio/builder
+    working_dir: /usr/app
+    volumes:
+      - ./:/usr/app
+    command: -w
   wallet:
     container_name: wallet
     env_file: .env

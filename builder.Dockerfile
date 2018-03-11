@@ -18,9 +18,6 @@ RUN npm config set registry https://registry.npmjs.org/ && \
 
 WORKDIR /usr/app
 
-COPY . .
-RUN tsc
-
 VOLUME ["/usr/app"]
 
 ENTRYPOINT ["tsc"]
