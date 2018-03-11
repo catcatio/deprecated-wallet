@@ -9,13 +9,13 @@
  * User Model
  * @class User
  */
-module.exports = class User {
+export default class User {
   username
   password
   messengerId
   constructor(username, password, messengerId) {
-    this.username = username
-    this.password = password
-    this.messengerId = messengerId
+    this.username = username;
+    this.password = password;
+    this.messengerId = messengerId;
   }
 }

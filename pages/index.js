@@ -64,7 +64,7 @@ class App extends Component {
     }
   }
 
-  async componentWillMount () {
+  async componentDidMount () {
     const account = await createAccount()
     this.setState(Object.assign(account))
   }

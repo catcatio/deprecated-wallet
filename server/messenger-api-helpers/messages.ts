@@ -8,20 +8,20 @@
 /* eslint-disable camelcase */
 /* eslint-disable max-len */
 
-const SERVER_URL = process.env.SERVER_URL // eslint-disable-line
+const SERVER_URL = process.env.SERVER_URL; // eslint-disable-line
 
 /**
  * Account Link Button
  */
 const signInButton = {
   type: 'account_link',
-  url: `${SERVER_URL}/users/login`
-}
+  url: `${SERVER_URL}/users/login`,
+};
 
 /**
  * Account Unlink Button
  */
-const signOutButton = { type: 'account_unlink' }
+const signOutButton = { type: 'account_unlink' };
 
 /**
  * Message that informs the user the must sign in and prompts
@@ -32,11 +32,11 @@ const createAccountMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: "Let's link Stellar wallet to your account",
-      buttons: [signInButton]
-    }
-  }
-}
+      text: 'Ready to do this? You’ll need to log in to your Jasper’s account so I can access your past orders.',
+      buttons: [signInButton],
+    },
+  },
+};
 
 /**
  * Fun message for saying hello to a signed in user.
@@ -44,11 +44,11 @@ const createAccountMessage = {
  * @param {String} username System username of the currently logged in user
  * @returns {Object} Message payload
  */
-const signInGreetingMessage = username => {
+const signInGreetingMessage = (username) => {
   return {
-    text: `Welcome back, ${username}!`
-  }
-}
+    text: `Welcome back, ${username}!`,
+  };
+};
 
 /**
  * Message that informs the user they've been succesfully logged in.
@@ -62,10 +62,10 @@ const signInSuccessMessage = {
     payload: {
       template_type: 'button',
       text: 'Now you’ll have full access to your order history and shopping list.',
-      buttons: [signOutButton]
-    }
-  }
-}
+      buttons: [signOutButton],
+    },
+  },
+};
 
 /**
  * Message that informs the user they've been succesfully logged out.
@@ -76,10 +76,10 @@ const signOutSuccessMessage = {
     payload: {
       template_type: 'button',
       text: 'You’ve been logged out of your Jasper’s account.',
-      buttons: [signInButton]
-    }
-  }
-}
+      buttons: [signInButton],
+    },
+  },
+};
 
 /**
  * Message that informs the user they are currently logged in.
@@ -87,25 +87,25 @@ const signOutSuccessMessage = {
  * @param {String} username System username of the currently logged in user
  * @returns {Object} Message payload
  */
-const loggedInMessage = username => {
+const loggedInMessage = (username) => {
   return {
     attachment: {
       type: 'template',
       payload: {
         template_type: 'button',
         text: `You’re still logged in as ${username}.`,
-        buttons: [signOutButton]
-      }
-    }
-  }
-}
+        buttons: [signOutButton],
+      },
+    },
+  };
+};
 
 /**
  * Fun message for saying hello to a signed in user.
  */
 const napMessage = {
-  text: 'Oh hey there! I was just napping while you were gone 😴. But I’m awake now!'
-}
+  text: 'Oh hey there! I was just napping while you were gone 😴. But I’m awake now!',
+};
 
 /**
  * The Get Started button.
@@ -116,18 +116,18 @@ const getStarted = {
   call_to_actions: [
     {
       payload: JSON.stringify({
-        type: 'GET_STARTED'
-      })
-    }
-  ]
-}
+        type: 'GET_STARTED',
+      }),
+    },
+  ],
+};
 
-module.exports = {
+export default {
   createAccountMessage,
   signInGreetingMessage,
   signInSuccessMessage,
   signOutSuccessMessage,
   loggedInMessage,
   napMessage,
-  getStarted
-}
+  getStarted,
+};

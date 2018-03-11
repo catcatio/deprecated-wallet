@@ -5,19 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-interface StoreInterface {
-  data: any
-}
-
 /**
  * Base store class built around ES6 Weak Map
  * @export
  * @class Store
  */
-class Store implements StoreInterface {
-  data: any
+export default class Store {
+  data
   constructor() {
-    this.data = new Map()
+    this.data = new Map();
   }
 
   /**
@@ -27,7 +23,7 @@ class Store implements StoreInterface {
    * @returns {Object} Value found in store
    */
   get(id) {
-    return this.data.get(id.toLowerCase())
+    return this.data.get(id.toLowerCase());
   }
 
   /**
@@ -38,7 +34,7 @@ class Store implements StoreInterface {
    * @returns {Object} Value set in store
    */
   set(id, value) {
-    return this.data.set(id.toLowerCase(), value)
+    return this.data.set(id.toLowerCase(), value);
   }
 
   /**
@@ -48,7 +44,7 @@ class Store implements StoreInterface {
    * @returns {Boolean} true found in store
    */
   has(id) {
-    return this.data.has(id.toLowerCase())
+    return this.data.has(id.toLowerCase());
   }
 
   /**
@@ -58,9 +54,9 @@ class Store implements StoreInterface {
    * @returns {Object} deleted object
    */
   delete(id) {
-    const deleted = this.get(id)
-    this.data.delete(id)
-    return { deleted }
+    const deleted = this.get(id);
+    this.data.delete(id);
+    return { deleted };
   }
 
   /**
@@ -69,9 +65,7 @@ class Store implements StoreInterface {
    * @returns {Object} instance of class
    */
   reset() {
-    this.data.clear()
-    return this
+    this.data.clear();
+    return this;
   }
 }
-
-module.exports = Store

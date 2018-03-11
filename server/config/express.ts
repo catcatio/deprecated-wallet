@@ -1,11 +1,10 @@
-// ===== MODULES ===============================================================
-
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-
-const start = async () => {
+export const init = async () => {
+  const bodyParser = require('body-parser')
+  const cookieParser = require('cookie-parser')
+  const logger = require('morgan')
   const express = require('express')
+  // const path = require('path')
+
   const app = express()
   app.set('port', process.env.PORT || 8080)
   app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,5 +26,3 @@ const start = async () => {
 
   return app
 }
-
-exports.start = start

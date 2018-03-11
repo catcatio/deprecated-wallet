@@ -6,8 +6,8 @@
  */
 
 // ===== MESSENGER =============================================================
-
-const { callThreadAPI } = require('./api')
+import messages from './messages';
+import api from './api';
 
 /**
  * setGetStarted - Sets the Get Started button for the application
@@ -15,8 +15,7 @@ const { callThreadAPI } = require('./api')
  * @returns {undefined}
  */
 const setGetStarted = () => {
-  const messages = require('./messages')
-  callThreadAPI(messages.getStarted)
-}
+  api.callThreadAPI(messages.getStarted);
+};
 
-module.exports = { setGetStarted }
+export default { setGetStarted };

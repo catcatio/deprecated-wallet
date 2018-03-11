@@ -6,10 +6,10 @@
  */
 
 // ===== MESSENGER =============================================================
-
-const sendApi = require('./send')
+import sendApi from './send';
 
 // ===== STORES ================================================================
+import UserStore from '../stores/user_store';
 
 /*
  * Account Link Event - This event is called when the Link Account
@@ -17,37 +17,37 @@ const sendApi = require('./send')
  * https://developers.facebook.com/docs/messenger-platform/
  * webhook-reference/account-linking
  */
-const handleReceiveAccountLink = event => {
-  const UserStore = require('../stores/user_store')
-  const senderId = event.sender.id
+const handleReceiveAccountLink = (event) => {
+  const senderId = event.sender.id;
 
   /* eslint-disable camelcase */
-  const status = event.account_linking.status
-  const authCode = event.account_linking.authorization_code
+  const status = event.account_linking.status;
+  const authCode = event.account_linking.authorization_code;
   /* eslint-enable camelcase */
 
-  console.log('Received account link event with for user %d with status %s ' + 'and auth code %s ', senderId, status, authCode)
+  console.log('Received account link event with for user %d with status %s ' +
+    'and auth code %s ', senderId, status, authCode);
 
   switch (status) {
     case 'linked':
-      const linkedUser = UserStore.instance.replaceAuthToken(authCode, senderId)
-      sendApi.sendSignInSuccessMessage(senderId, linkedUser.username)
-      break
+      const linkedUser = UserStore.replaceAuthToken(authCode, senderId);
+      sendApi.sendSignInSuccessMessage(senderId, linkedUser.username);
+      break;
     case 'unlinked':
-      UserStore.instance.unlinkMessengerAccount(senderId)
-      sendApi.sendSignOutSuccessMessage(senderId)
-      break
+      UserStore.unlinkMessengerAccount(senderId);
+      sendApi.sendSignOutSuccessMessage(senderId);
+      break;
     default:
-      break
+      break;
   }
-}
+};
 
 /*
  * handleReceivePostback — Postback event handler triggered by a postback
  * action you, the developer, specify on a button in a template. Read more at:
  * developers.facebook.com/docs/messenger-platform/webhook-reference/postback
  */
-const handleReceivePostback = event => {
+const handleReceivePostback = (event) => {
   /**
    * The 'payload' param is a developer-defined field which is
    * set in a postbackbutton for Structured Messages.
@@ -56,19 +56,19 @@ const handleReceivePostback = event => {
    * actions to be a string that represents a JSON object
    * containing `type` and `data` properties. EG:
    */
-  const { type } = JSON.parse(event.postback.payload)
-  const senderId = event.sender.id
+  const { type } = JSON.parse(event.postback.payload);
+  const senderId = event.sender.id;
 
   // Perform an action based on the type of payload received.
   switch (type) {
     case 'GET_STARTED':
-      sendApi.sendWelcomeMessage(senderId)
-      break
+      sendApi.sendWelcomeMessage(senderId);
+      break;
     default:
-      console.error(`Unknown Postback called: ${type}`)
-      break
+      console.error(`Unknown Postback called: ${type}`);
+      break;
   }
-}
+};
 
 /*
  * handleReceiveMessage - Message Event called when a message is sent to
@@ -76,24 +76,20 @@ const handleReceivePostback = event => {
  * of message that was received. Read more at: https://developers.facebook.com/
  * docs/messenger-platform/webhook-reference/message-received
  */
-const handleReceiveMessage = event => {
-  const message = event.message
-  const senderId = event.sender.id
+const handleReceiveMessage = (event) => {
+  const message = event.message;
+  const senderId = event.sender.id;
 
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
   // spamming the bot if the requests take some time to return.
-  console.log(' * handleReceiveMessage.sendReadReceipt')
-  sendApi.sendReadReceipt(senderId)
+  sendApi.sendReadReceipt(senderId);
 
-  if (message.text) {
-    console.log(' * handleReceiveMessage.sendWelcomeMessage')
-    sendApi.sendWelcomeMessage(senderId)
-  }
-}
+  if (message.text) { sendApi.sendWelcomeMessage(senderId); }
+};
 
-module.exports = {
+export default {
   handleReceiveAccountLink,
   handleReceiveMessage,
-  handleReceivePostback
-}
+  handleReceivePostback,
+};

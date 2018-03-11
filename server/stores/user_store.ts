@@ -6,22 +6,26 @@
  */
 
 // ===== LODASH ================================================================
-const isEmpty = require('lodash/isEmpty')
+import isEmpty from 'lodash/isEmpty';
 
 // ===== STORES ================================================================
-const StoreBase = require('./store')
+import Store from './store';
 
 // ===== MODELS ================================================================
-const User = require('../models/user')
+import User from '../models/user';
 
 /**
  * Stores User data
  */
-class UserStore extends StoreBase {
+class UserStore extends Store {
   insert(username, password, messengerId?) {
-    const user = new User(username, password, messengerId)
-    this.set(username, user)
-    return user
+    const user = new User(
+      username,
+      password,
+      messengerId,
+    );
+    this.set(username, user);
+    return user;
   }
 
   /**
@@ -32,14 +36,12 @@ class UserStore extends StoreBase {
    * @returns {Object} User model
    */
   update(username, updateObject) {
-    const currentUser = this.get(username)
-    if (!currentUser) {
-      return {}
-    }
+    const currentUser = this.get(username);
+    if (!currentUser) { return {}; }
 
-    const updatedUser = Object.assign({}, currentUser, updateObject)
-    this.set(username, updatedUser)
-    return updatedUser
+    const updatedUser = Object.assign({}, currentUser, updateObject);
+    this.set(username, updatedUser);
+    return updatedUser;
   }
 
   /**
@@ -48,14 +50,14 @@ class UserStore extends StoreBase {
    * @param {String} messengerId MessengerId obtained via account_link
    * @returns {Object} User model
    */
-  getByMessengerId(messengerId): any {
-    let currentUser = {}
-    this.data.forEach(userData => {
+  getByMessengerId(messengerId) {
+    let currentUser = {};
+    this.data.forEach((userData) => {
       if (userData.messengerId === messengerId) {
-        currentUser = userData
+        currentUser = userData;
       }
-    })
-    return currentUser
+    });
+    return currentUser;
   }
 
   /**
@@ -66,7 +68,7 @@ class UserStore extends StoreBase {
    * @returns {Object} User model
    */
   linkMessengerAccount(username, messengerId) {
-    return this.update(username, { messengerId })
+    return this.update(username, { messengerId });
   }
 
   /**
@@ -76,14 +78,12 @@ class UserStore extends StoreBase {
    * @returns {Object} User model
    */
   unlinkMessengerAccount(messengerId) {
-    const currentUser = this.getByMessengerId(messengerId)
-    if (isEmpty(currentUser)) {
-      return currentUser
-    }
+    const currentUser = this.getByMessengerId(messengerId) as any;
+    if (isEmpty(currentUser)) { return currentUser; }
 
     return this.update(currentUser.username, {
-      messengerId: undefined
-    })
+      messengerId: undefined,
+    });
   }
 
   /**
@@ -95,19 +95,17 @@ class UserStore extends StoreBase {
    * @returns {Object} User model
    */
   replaceAuthToken(authToken, messengerId) {
-    const currentUser = this.getByMessengerId(authToken)
-    if (isEmpty(currentUser)) {
-      return currentUser
-    }
+    const currentUser = this.getByMessengerId(authToken) as any;
+    if (isEmpty(currentUser)) { return currentUser; }
 
-    return this.linkMessengerAccount(currentUser.username, messengerId)
+    return this.linkMessengerAccount(currentUser.username, messengerId);
   }
 }
 
-const instance = new UserStore()
+const USER_STORE = new UserStore();
 
 // add demo account
-instance.insert('dave', '12345678')
+USER_STORE.insert('dave', '12345678');
 
 // export an instantiated user store.
-exports.instance = instance
+export default USER_STORE;
