@@ -36,7 +36,7 @@ export const hook = (app, nextjs) => {
     const accountLinkingToken = req.query.account_linking_token;
     const redirectURI = req.query.redirect_uri;
 
-    return nextjs.render(req, res, '/create-account', { accountLinkingToken, redirectURI });
+    return nextjs.render(req, res, '/users/create-account', { accountLinkingToken, redirectURI });
   });
 
   /**
@@ -48,7 +48,7 @@ export const hook = (app, nextjs) => {
       nextjs.render(
         req,
         res,
-        '/create-account',
+        '/users/create-account',
         {
           username,
           password,
@@ -64,7 +64,7 @@ export const hook = (app, nextjs) => {
       if (redirectURI) {
         linkAccountToMessenger(res, username, redirectURI);
       } else {
-        nextjs.render(req, res, '/create-account-success', { username });
+        nextjs.render(req, res, '/users/create-account-success', { username });
       }
     }
   });
@@ -87,7 +87,7 @@ export const hook = (app, nextjs) => {
 
     const redirectURI = req.query.redirect_uri;
 
-    nextjs.render(req, res, '/login', { accountLinkingToken, redirectURI });
+    nextjs.render(req, res, '/users/login', { accountLinkingToken, redirectURI });
   });
 
   /**
@@ -97,7 +97,7 @@ export const hook = (app, nextjs) => {
     const { username, password, redirectURI } = req.body;
     const userLogin = UserStore.get(username);
     if (!userLogin || userLogin.password !== password) {
-      nextjs.render(req, res, '/login', {
+      nextjs.render(req, res, '/users/login', {
         redirectURI,
         username,
         password,

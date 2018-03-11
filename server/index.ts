@@ -5,21 +5,18 @@ export const start = async () => {
   const app = await require('./config/express').init()
 
   // Next - pre
-  const nextjs = await require('./config/next').init(app)
+  const nextConfig = require('./config/next')
+  const nextjs = await nextConfig.init(app)
 
-  // Routes
-  const main = require('./routes')
-  main.hook(app, nextjs)
-
-  // const users = require('./routes/users')
-  // users.hook(app, nextjs)
+  // Route
+  await nextConfig.route(app, nextjs)
 
   // Messenger
   const messenger = new Messenger()
   await messenger.start(app)
 
   // Next - post
-  await nextjs.start(app, nextjs)
+  await nextConfig.start(app, nextjs)
 
   // Listen
   app.listen(app.get('port'), err => {
