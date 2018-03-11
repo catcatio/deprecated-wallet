@@ -5,7 +5,6 @@ import ThreadSetup from './messenger-api-helpers/thread-setup';
 // ===== ROUTES ================================================================
 
 import webhooks from './routes/webhooks';
-import users from './routes/users';
 
 export default class Messenger {
   async start(app) {
