@@ -6,6 +6,7 @@ exports.start = async app => {
 
   /* ----------  Errors  ---------- */
 
+  /*
   app.use(function (err, req, res, next) {
     if (!res.locals) return next()
 
@@ -15,8 +16,9 @@ exports.start = async app => {
 
     // render the error page
     res.status(err.status || 500)
-    res.render('error')
+    res.send(err.message)
   })
+  */
 
   // Messenger
   const ThreadSetup = require('./messenger-api-helpers/thread-setup')

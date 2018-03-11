@@ -1,5 +1,5 @@
 {
-  "restartable": false,
+  "restartable": true,
   "verbose": true,
   "restartable": "rs",
   "ignore": [

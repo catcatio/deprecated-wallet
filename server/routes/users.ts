@@ -8,29 +8,28 @@
 // ===== MODULES ===============================================================
 const express = require('express')
 const uuid = require('uuid')
-const { Keypair } = require('stellar-sdk')
 
 // ===== STORES ================================================================
-const _UserStore = require('../stores/user_store')
 
-const router = express.Router()
+const userRouter = express.Router()
 
 const linkAccountToMessenger = (res, username, redirectURI) => {
   /*
-    The auth code can be any thing you can use to uniquely identify a user.
-    Once the redirect below happens, this bot will receive an account link
-    message containing this auth code allowing us to identify the user.
-
-    NOTE: It is considered best practice to use a unique id instead of
-    something guessable like a users username so that malicious
-    users cannot spoof a link.
-   */
+  The auth code can be any thing you can use to uniquely identify a user.
+  Once the redirect below happens, this bot will receive an account link
+  message containing this auth code allowing us to identify the user.
+  
+  NOTE: It is considered best practice to use a unique id instead of
+  something guessable like a users username so that malicious
+  users cannot spoof a link.
+  */
   const authCode = uuid()
 
   // set the messenger id of the user to the authCode.
   // this will be replaced on successful account link
   // with the users id.
-  _UserStore.linkMessengerAccount(username, authCode)
+  const _UserStore = require('../stores/user_store')
+  _UserStore.instance.linkMessengerAccount(username, authCode)
 
   // Redirect users to this URI on successful login
   const redirectURISuccess = `${redirectURI}&authorization_code=${authCode}`
@@ -41,10 +40,11 @@ const linkAccountToMessenger = (res, username, redirectURI) => {
 /**
  * GET Create user account view
  */
-router.get('/create', function (req, res) {
+userRouter.get('/create', function (req, res) {
   const accountLinkingToken = req.query.account_linking_token
   const redirectURI = req.query.redirect_uri
 
+  const { Keypair } = require('stellar-sdk')
   const newAccount = Keypair.random()
 
   res.render('create-account', {
@@ -58,9 +58,10 @@ router.get('/create', function (req, res) {
 /**
  * Create user account and link to messenger
  */
-router.post('/create', function (req, res) {
+userRouter.post('/create', function (req, res) {
+  const _UserStore = require('../stores/user_store')
   const { username, password, password2, redirectURI } = req.body
-  if (_UserStore.has(username)) {
+  if (_UserStore.instance.has(username)) {
     res.render('create-account', {
       username,
       password,
@@ -70,7 +71,7 @@ router.post('/create', function (req, res) {
       errorInput: 'username'
     })
   } else {
-    _UserStore.insert(username, password)
+    _UserStore.instance.insert(username, password)
 
     if (redirectURI) {
       linkAccountToMessenger(res, username, redirectURI)
@@ -85,7 +86,7 @@ router.post('/create', function (req, res) {
  * (sendAccountLinking) is pointed to this URL.
  *
  */
-router.get('/login', function (req, res) {
+userRouter.get('/login', function (req, res) {
   /*
     Account Linking Token is never used in this demo, however it is
     useful to know about this token in the context of account linking.
@@ -104,9 +105,10 @@ router.get('/login', function (req, res) {
 /**
  * User login route is used to authorize account_link actions
  */
-router.post('/login', function (req, res) {
+userRouter.post('/login', function (req, res) {
+  const _UserStore = require('../stores/user_store')
   const { username, password, redirectURI } = req.body
-  const userLogin = _UserStore.get(username)
+  const userLogin = _UserStore.instance.get(username)
   if (!userLogin || userLogin.password !== password) {
     res.render('login', {
       redirectURI,
@@ -122,4 +124,4 @@ router.post('/login', function (req, res) {
   }
 })
 
-module.exports = router
+exports.userRouter = userRouter

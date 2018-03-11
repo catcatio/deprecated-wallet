@@ -74,4 +74,4 @@ class Store implements StoreInterface {
   }
 }
 
-export default Store
+module.exports = Store

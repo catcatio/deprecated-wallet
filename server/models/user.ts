@@ -9,7 +9,7 @@
  * User Model
  * @class User
  */
-export default class User {
+module.exports = class User {
   username
   password
   messengerId

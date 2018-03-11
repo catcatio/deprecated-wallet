@@ -1,20 +1,8 @@
-/**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// ===== LODASH ================================================================
-const castArray = require('lodash/castArray')
-const isEmpty = require('lodash/isEmpty')
-
 // ===== MESSENGER =============================================================
 const api = require('./api')
 const messages = require('./messages')
 
 // ===== STORES ================================================================
-const UserStore = require('../stores/user_store')
 
 // Turns typing indicator on.
 const typingOn = recipientId => {
@@ -48,6 +36,8 @@ const messageToJSON = (recipientId, messagePayload) => {
 
 // Send one or more messages using the Send API.
 const sendMessage = (recipientId, messagePayloads) => {
+  console.log(' * sendMessage')
+  const castArray = require('lodash/castArray')
   const messagePayloadArray = castArray(messagePayloads).map(messagePayload => messageToJSON(recipientId, messagePayload))
 
   api.callMessagesAPI([typingOn(recipientId), ...messagePayloadArray, typingOff(recipientId)])
@@ -70,10 +60,14 @@ const sendLoggedInWelcomeMessage = (recipientId, username) => {
 
 // Send a different Welcome message based on if the user is logged in.
 const sendWelcomeMessage = recipientId => {
-  const userProfile = UserStore.getByMessengerId(recipientId)
+  const UserStore = require('../stores/user_store')
+  const isEmpty = require('lodash/isEmpty')
+  const userProfile = UserStore.instance.getByMessengerId(recipientId)
   if (!isEmpty(userProfile)) {
+    console.log(' * send.sendLoggedOutWelcomeMessage')
     sendLoggedInWelcomeMessage(recipientId, userProfile.username)
   } else {
+    console.log(' * send.sendLoggedOutWelcomeMessage')
     sendLoggedOutWelcomeMessage(recipientId)
   }
 }
@@ -98,7 +92,7 @@ const sendReadReceipt = recipientId => {
   api.callMessagesAPI(messageData)
 }
 
-export default {
+module.exports = {
   sendMessage,
   sendWelcomeMessage,
   sendSignOutSuccessMessage,

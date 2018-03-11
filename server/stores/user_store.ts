@@ -6,18 +6,18 @@
  */
 
 // ===== LODASH ================================================================
-import isEmpty from 'lodash/isEmpty'
+const isEmpty = require('lodash/isEmpty')
 
 // ===== STORES ================================================================
-import Store from './store'
+const StoreBase = require('./store')
 
 // ===== MODELS ================================================================
-import User from '../models/user'
+const User = require('../models/user')
 
 /**
  * Stores User data
  */
-class UserStore extends Store {
+class UserStore extends StoreBase {
   insert(username, password, messengerId?) {
     const user = new User(username, password, messengerId)
     this.set(username, user)
@@ -104,10 +104,10 @@ class UserStore extends Store {
   }
 }
 
-const USER_STORE = new UserStore()
+const instance = new UserStore()
 
 // add demo account
-USER_STORE.insert('dave', '12345678')
+instance.insert('dave', '12345678')
 
 // export an instantiated user store.
-export default USER_STORE
+exports.instance = instance

@@ -55,14 +55,17 @@ exports.hook = app => {
         }
         // Iterate over each messaging event
         pageEntry.messaging.forEach(messagingEvent => {
-          console.log({ messagingEvent })
+          // console.log({ messagingEvent })
           if (messagingEvent.message) {
+            console.log(' ^ handleReceiveMessage')
             receiveApi.handleReceiveMessage(messagingEvent)
           } else if (messagingEvent.account_linking) {
+            console.log(' ^ handleReceiveAccountLink')
             // eslint-disable-line camelcase, max-len
             receiveApi.handleReceiveAccountLink(messagingEvent)
           }
           if (messagingEvent.postback) {
+            console.log(' ^ handleReceivePostback')
             receiveApi.handleReceivePostback(messagingEvent)
           } else {
             console.error('Webhook received unknown messagingEvent: ', messagingEvent)

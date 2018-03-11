@@ -6,10 +6,10 @@
  */
 
 // ===== MESSENGER =============================================================
-import sendApi from './send'
+
+const sendApi = require('./send')
 
 // ===== STORES ================================================================
-import UserStore from '../stores/user_store'
 
 /*
  * Account Link Event - This event is called when the Link Account
@@ -18,6 +18,7 @@ import UserStore from '../stores/user_store'
  * webhook-reference/account-linking
  */
 const handleReceiveAccountLink = event => {
+  const UserStore = require('../stores/user_store')
   const senderId = event.sender.id
 
   /* eslint-disable camelcase */
@@ -29,11 +30,11 @@ const handleReceiveAccountLink = event => {
 
   switch (status) {
     case 'linked':
-      const linkedUser = UserStore.replaceAuthToken(authCode, senderId)
+      const linkedUser = UserStore.instance.replaceAuthToken(authCode, senderId)
       sendApi.sendSignInSuccessMessage(senderId, linkedUser.username)
       break
     case 'unlinked':
-      UserStore.unlinkMessengerAccount(senderId)
+      UserStore.instance.unlinkMessengerAccount(senderId)
       sendApi.sendSignOutSuccessMessage(senderId)
       break
     default:
@@ -82,14 +83,16 @@ const handleReceiveMessage = event => {
   // It's good practice to send the user a read receipt so they know
   // the bot has seen the message. This can prevent a user
   // spamming the bot if the requests take some time to return.
+  console.log(' * handleReceiveMessage.sendReadReceipt')
   sendApi.sendReadReceipt(senderId)
 
   if (message.text) {
+    console.log(' * handleReceiveMessage.sendWelcomeMessage')
     sendApi.sendWelcomeMessage(senderId)
   }
 }
 
-export default {
+module.exports = {
   handleReceiveAccountLink,
   handleReceiveMessage,
   handleReceivePostback

@@ -6,7 +6,7 @@
  */
 
 // ===== MESSENGER =============================================================
-const messages = require('./messages')
+
 const { callThreadAPI } = require('./api')
 
 /**
@@ -15,6 +15,7 @@ const { callThreadAPI } = require('./api')
  * @returns {undefined}
  */
 const setGetStarted = () => {
+  const messages = require('./messages')
   callThreadAPI(messages.getStarted)
 }
 
