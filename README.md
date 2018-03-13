@@ -44,7 +44,7 @@ pyenv local 2.7.14
   ```
 ```
 {
-  m-psid: {
+  psid: {
     xlm: encrypted(G123, master_key)
   }
 }

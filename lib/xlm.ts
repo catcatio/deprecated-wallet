@@ -8,3 +8,5 @@ export const createAccount = async () => {
     secret: newAccount.secret()
   }
 }
+
+export const linkPublicKey = async () => {}
