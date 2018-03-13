@@ -10,8 +10,7 @@
     "*__",
     "coverage/*",
     ".tmp/*",
-    "*.log",
-    "pages/*"
+    "*.log"
   ],
   "events": {
     "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"

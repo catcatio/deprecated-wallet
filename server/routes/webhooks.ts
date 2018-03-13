@@ -67,8 +67,8 @@ router.post('/', (req, res) => {
       }
       // Iterate over each messaging event
       pageEntry.messaging.forEach((messagingEvent) => {
-        console.log({ messagingEvent });
         if (messagingEvent.message) {
+          console.log(' ^ handleReceiveMessage');
           receiveApi.handleReceiveMessage(messagingEvent);
         } else if (messagingEvent.account_linking) { // eslint-disable-line camelcase, max-len
           receiveApi.handleReceiveAccountLink(messagingEvent);

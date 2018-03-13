@@ -44,12 +44,8 @@ pyenv local 2.7.14
   ```
 ```
 {
-  messenger: {
-    psid: 1234,
-    xlm: {
-      publicKey: encrypted(G123, master_key),
-      secretKey : encrypted(S123, master_key)
-    }
+  m-psid: {
+    xlm: encrypted(G123, master_key)
   }
 }
 ```

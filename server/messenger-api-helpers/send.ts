@@ -64,8 +64,7 @@ const sendLoggedOutWelcomeMessage = (recipientId) => {
   sendMessage(
     recipientId, [
       {
-        text: 'Hi! 👋 Welcome to Jasper’s Market!'
-          + ' (Messenger Platform Account Linking demo)',
+        text: 'Hi! 👋 Welcome to CatCat!',
       },
       messages.createAccountMessage,
     ]
@@ -84,10 +83,15 @@ const sendLoggedInWelcomeMessage = (recipientId, username) => {
 
 // Send a different Welcome message based on if the user is logged in.
 const sendWelcomeMessage = (recipientId) => {
+  console.log(' * sendWelcomeMessage');
   const userProfile = UserStore.getByMessengerId(recipientId) as any;
-  if (!isEmpty(userProfile)) {
+  console.log(' # userProfile:', userProfile);
+
+  if (userProfile && userProfile.username) {
+    console.log(' * sendLoggedInWelcomeMessage');
     sendLoggedInWelcomeMessage(recipientId, userProfile.username);
   } else {
+    console.log(' * sendLoggedOutWelcomeMessage');
     sendLoggedOutWelcomeMessage(recipientId);
   }
 };

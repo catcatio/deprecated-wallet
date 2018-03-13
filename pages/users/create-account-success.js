@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 export default class extends Component {
-  static getInitialProps ({ query: { id } }) {
-    return { postId: id }
+  static getInitialProps ({ query: { username } }) {
+    return { username }
   }
 
   render () {

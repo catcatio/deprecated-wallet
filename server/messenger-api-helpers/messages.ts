@@ -32,7 +32,7 @@ const createAccountMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Ready to do this? You’ll need to log in to your Jasper’s account so I can access your past orders.',
+      text: `Ready to do this? You’ll need to log in with your Keybase account so I can link it.`,
       buttons: [signInButton],
     },
   },
@@ -75,7 +75,7 @@ const signOutSuccessMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'You’ve been logged out of your Jasper’s account.',
+      text: `You’ve been logged out of your Keybase's account.`,
       buttons: [signInButton],
     },
   },

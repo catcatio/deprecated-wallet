@@ -105,7 +105,7 @@ class UserStore extends Store {
 const USER_STORE = new UserStore();
 
 // add demo account
-USER_STORE.insert('dave', '12345678');
+USER_STORE.insert('foo', 'bar');
 
 // export an instantiated user store.
 export default USER_STORE;
